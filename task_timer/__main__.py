@@ -42,7 +42,8 @@ def main():
         elif user_input == "3" or user_input == "running tasks":
             task_manager.running_tasks()
 
-        # elif user_input == "5" or user_input == "export csv":
+        elif user_input == "5" or user_input == "export csv":
+            task_manager.export_csv()
 
         elif user_input == "4" or user_input == "show task records" or user_input == "show task record":
             task_manager.show_records()

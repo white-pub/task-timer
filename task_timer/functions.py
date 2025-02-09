@@ -95,24 +95,42 @@ class TaskManager:
         """
         Display all the tasks that are not ended.
         """
-        print("\n                      Currently running tasks\n")
         running_tasks_df = self.df[self.df["End time"] == "Still running"]
-        print(running_tasks_df.to_string(index=False, col_space=15))
-
+        if running_tasks_df.empty:
+            print("\n  There is no currently running tasks.")
+        else:
+            print("\n                      Currently running tasks\n")
+            print(running_tasks_df.to_string(index=False, col_space=15))
+    
     def show_records(self):
         """
         Display the records of all the tasks, including finished tasks and 
         currently running tasks.
         """
-        print("\n                      All task records\n")
-        print(self.df.to_string(index=False, col_space=15))
+        
+        if self.df.empty:
+            print("\n  There are no task records.")
+        else:
+            print("\n                      All task records\n")
+            print(self.df.to_string(index=False, col_space=15))
 
     def export_csv(self):
-        
-        # export...
-        file_name = 123
+        """
+        Export all records to CSV file. File name: task_timer_record_XXXXXXXX.csv
+        The XXXXXXXX is the date and time the file was created, in the format 
+        mm/dd/hh/mm, with 24-hour notation. For example, a file exported at 
+        Feb 7th 6:35pm will be "task_timer_record_02071835.csv"
+        """
+        # Capture the current time
+        current_time = datetime.now()
 
-        print("  Your records has been exported to a CSV file.")
+        # Format the current time as mmddhhmm and create file_name
+        formatted_time = current_time.strftime("%m%d%H%M")
+        file_name = f"task_timer_record_{formatted_time}.csv"
+
+        self.df.to_csv(file_name, index=False)  
+
+        print("\n  Your records has been exported to a CSV file.")
         print(f"  File name: {file_name}")
 
 
