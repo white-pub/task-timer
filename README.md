@@ -21,7 +21,7 @@ Available command and its explanations:
     All the task records will be shown, including task ID, task name, start time, end time, and duration.
 - export csv (5)  
     The task records will be exported as a CSV file, with the file name "task_timer_record_XXXXXXXX.csv"  
-    The string of XXXXXXXX will be the date and time the file was created, in the format mm/dd/hh/mm, with 24-hour notation.
+    The string of XXXXXXXX will be the date and time the file was created, in the format mm/dd/hh/mm, with 24-hour notation.  
     For example, a file exported at Feb 7th 6:35pm will be "task_timer_record_02071835.csv"
 - help (6)  
     This will display a list of commands the user can use, with explanations.
