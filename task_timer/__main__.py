@@ -34,7 +34,11 @@ def main():
         if user_input == "1" or user_input == "start task":
             task_manager.start_task()
 
-        # elif user_input == "2" or user_input == "end task":
+        # Display currently running tasks and end task according to user input
+        elif user_input == "2" or user_input == "end task":
+            task_manager.running_tasks()
+            task_manager.end_task()
+
         elif user_input == "3" or user_input == "running tasks":
             task_manager.running_tasks()
 

@@ -14,7 +14,7 @@ from datetime import datetime
 class TaskManager:
     def __init__(self):
         # Create a pandas dataframe to store task details.
-        self.df = pd.DataFrame(columns=["Task ID", "Task name", "Start time", "End time", "duration"])
+        self.df = pd.DataFrame(columns=["Task ID", "Task name", "Start time", "End time", "Duration"])
         self.current_id = 0
 
     def start_task(self):
@@ -27,8 +27,9 @@ class TaskManager:
         self.current_id = self.current_id + 1
 
         # capture current time, include month, date, hour, minute, second
+        time_format = "%m-%d %H:%M:%S"
         current_time = datetime.now()
-        formatted_time = current_time.strftime("%m-%d %H:%M:%S")
+        formatted_time = current_time.strftime(time_format)
 
         # Prompt task name from user, default is a blank space
         task_name = input("\n  Task name (optional): ")
@@ -45,11 +46,50 @@ class TaskManager:
         print(f"  Task timer has started. Task ID: {self.current_id}. Task name: {task_name}")
 
     def end_task(self):
+        """
+        Accepts one task ID, adds in end time and calculates duration.
+        """
 
-        task_id = input("\n  Please enter one task ID you want to end:")
-        task_id = int(task_id)
+        # capture current time, include month, date, hour, minute, second
+        time_format = "%m-%d %H:%M:%S"
+        current_time = datetime.now()
+        formatted_time = current_time.strftime(time_format)
+
+        # Prompt for Task Id to end and handle value error
+        task_id = input("\n  Please enter one task ID you want to end: ")
+        try:
+            task_id = int(task_id)
+        except ValueError:
+            print("\n  Error: You did not enter a valid number.")
+
+        # Check if the ID is in range
+        if task_id in self.df["Task ID"].values:
+            task_row_index = task_id -1
+            
+            # Check if the task has already ended
+            if self.df.loc[task_row_index, "End time"] == "Still running":
+                # Update the task with the end time
+                self.df.loc[task_row_index, "End time"] = formatted_time
+                
+                # Calculate the duration and update the information
+                end_time = datetime.strptime(formatted_time, time_format) 
+                start_time = self.df.loc[task_row_index, "Start time"]
+                start_time = datetime.strptime(start_time, time_format)
+                duration = end_time - start_time
+                self.df.loc[task_row_index, "Duration"] = duration
+
+                print(f"\n  Task {task_id} is successfully ended: ")
+
+            else:
+                print("\n  Error: This task has already be ended")
+            
+            # Display the task that is ended
+            filtered_df = self.df[task_row_index:task_row_index+1]
+            print(filtered_df.to_string(index=False, col_space=15))
+
+        else:
+            print("\n  This task ID does not exits.")
         
-
 
     def running_tasks(self):
         """
