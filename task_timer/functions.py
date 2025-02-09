@@ -3,7 +3,7 @@ functions.py
 Anna Chen
 
 Created: 2025-02-07
-Last Updated: 2025-02-07
+Last Updated: 2025-02-08
 
 This file contains the functions needed for the task timer program.
 """
@@ -128,13 +128,16 @@ class TaskManager:
         formatted_time = current_time.strftime("%m%d%H%M")
         file_name = f"task_timer_record_{formatted_time}.csv"
 
+        # export as csv and display success message
         self.df.to_csv(file_name, index=False)  
-
         print("\n  Your records has been exported to a CSV file.")
         print(f"  File name: {file_name}")
 
 
     def list_commands(self):
+        """"
+        Display all the available commands.
+        """
 
         commands = """
   Available command and its explanations:
@@ -173,5 +176,3 @@ class TaskManager:
         """
 
         print(commands)
-
-        # task_duration = datetime.now() - start_time

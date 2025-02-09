@@ -2,7 +2,7 @@
 __main__.py
 Anna Chen
 Created: 2025-01-30
-Last Updated: 2025-02-07
+Last Updated: 2025-02-08
  
 This file is the starting point of the program.
 It also contains the command-line interface logic for the task timer program.
@@ -18,7 +18,7 @@ def main():
     task_manager = TaskManager()
 
     # Display program name and introduce available commands
-    print("\n-----------------------------------------------\n")
+    print("\n-------------------------------------------------------------------------------\n")
     print("                             Task Timer\n")
     print("  This is a command line interface program that allow the user to track")
     print("  multiple tasks at a time.")
@@ -65,7 +65,7 @@ def main():
                 task_manager.export_csv()
 
             print("\n  Thanks for using this program. Bye.")
-            print("  ---------------------------------------------------------")
+            print("---------------------------------------------------------------------------------")
             break
         
         # Handle invalid input
