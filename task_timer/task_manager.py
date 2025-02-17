@@ -1,11 +1,11 @@
 """
-functions.py
+task_manager.py
 Anna Chen
 
 Created: 2025-02-07
 Last Updated: 2025-02-08
 
-This file contains the functions needed for the task timer program.
+This file contains the TaskManager class which has the functions needed for the task timer program.
 """
 
 import pandas as pd

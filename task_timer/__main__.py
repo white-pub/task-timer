@@ -9,19 +9,26 @@ It also contains the command-line interface logic for the task timer program.
 """
 
 # import the TaskManager class which has all the important methods
-# Use a relative import ".funtions" to run the package as module with "python -m task_timer"
-from .functions import TaskManager
+# Use a relative import ".task_manager" to run the package as module with "python -m task_timer"
+from .task_manager import TaskManager
 
-def main():
 
-    # Initialize the task dataframe
-    task_manager = TaskManager()
+def program_intro():
+    """ Display program name and introduce available commands. """
 
-    # Display program name and introduce available commands
     print("\n-------------------------------------------------------------------------------\n")
     print("                             Task Timer\n")
     print("  This is a command line interface program that allow the user to track")
     print("  multiple tasks at a time.")
+
+
+def handle_commands():
+
+    # Initialize the task dataframe
+    task_manager = TaskManager()
+    
+    # Display program name and introduce available commands
+    program_intro()
     task_manager.list_commands()
 
     while True:
@@ -71,6 +78,11 @@ def main():
         # Handle invalid input
         else:
             print("\n      Error: Invalid command. Enter \"help\" to see available commands.")
+
+
+def main():
+    # Start the program and handle commands
+    handle_commands()
 
 if __name__ == '__main__':
     main()

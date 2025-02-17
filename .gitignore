@@ -1,1 +1,3 @@
 venv/
+task_timer.egg-info/
+__pycache__/
